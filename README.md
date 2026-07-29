@@ -1,4 +1,4 @@
-# ☁️ AWS Learning Journey
+ ☁️ AWS Learning Journey
 
 Hi, I'm Sachin Ramteke.
 
@@ -6,7 +6,7 @@ I am an AWS Certified Cloud Practitioner preparing for Cloud Support Engineer an
 
 This repository contains all my hands-on AWS projects and notes.
 
-## 🚀 Skills
+🚀 Skills
 
 - AWS
 - Linux
@@ -22,9 +22,9 @@ This repository contains all my hands-on AWS projects and notes.
 ## 📚 Learning Progress
 
 - [x] GitHub Setup
-- [ ] AWS Account Setup
+- [x] AWS Account Setup
 - [ ] IAM
-- [ ] EC2
+- [x] EC2 (Project 03)
 - [ ] Linux Basics
 - [ ] S3
 - [ ] VPC
