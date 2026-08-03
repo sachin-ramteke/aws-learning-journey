@@ -1,11 +1,11 @@
- Project 03: Amazon EC2 Linux Web Server Deployment
+ # Project 03: Amazon EC2 Linux Web Server Deployment
 
-Overview
-Successfully provisioned and deployed an Apache HTTP Web Server on an Amazon Linux 2023 EC2 instance within the Asia Pacific (Mumbai) `ap-south-1` region using the AWS Management Console and EC2 Instance Connect.
+## Overview
+Successfully provisioned and deployed an Apache HTTP Web Server on an Amazon Linux 2023 EC2 instance within the Asia Pacific (Mumbai) `ap-south-1` region using AWS Management Console and EC2 Instance Connect.
 
 ---
 
- Architecture
+## Architecture
 ```text
 [ Web Browser / Internet Client ]
               │
@@ -26,4 +26,3 @@ Successfully provisioned and deployed an Apache HTTP Web Server on an Amazon Lin
      ├── OS: Amazon Linux 2023
      ├── Storage: 8 GiB gp3 EBS Root Volume
      └── Web Server: Apache (httpd)
-
