@@ -46,3 +46,37 @@ sudo systemctl enable httpd
 
 # 4. Create custom landing page
 echo "<h1>Welcome to Auto Scaled Web Server</h1>" | sudo tee /var/www/html/index.html
+## 🧪 Verification & Testing
+
+* **Local Instance Test:**
+  Verified Apache web server functionality locally using `curl`:
+  ```bash
+  curl http://localhost
+
+---
+
+### 2. Real-World Challenges & Solutions Section
+
+```markdown
+## 🛠️ Real-World Challenges Faced & Solutions
+
+### 1. Connection Timeout (`ERR_CONNECTION_TIMED_OUT`)
+* **Problem:** Public IP address timed out when accessed via browser.
+* **Root Cause:** Apache was not running, and Brave Browser was forcing HTTPS on port 80.
+* **Solution:** Enabled `httpd` via `systemctl` and disabled HTTPS upgrades/Shields for the IP address.
+
+### 2. Terminal Syntax Error (`sudo: dgf: command not found`)
+* **Problem:** Package manager command failed during setup.
+* **Solution:** Corrected typo from `dgf` to `dnf`.
+
+### 3. Shell Expansion Error (`-bash: !: event not found`)
+* **Problem:** Exclamation mark in double quotes triggered Bash history expansion.
+* **Solution:** Removed the `!` from the HTML string before passing to `tee`.
+-
+## 🎯 Key Takeaways
+
+* **Multi-Layered Cloud Networking:** Cloud troubleshooting requires checking all network layers sequentially—Route Tables, Internet Gateways, Security Groups (SGs), and Network Access Control Lists (NACLs).
+* **System Service Verification:** Launching an EC2 instance via an Auto Scaling Group is only step one; web server processes like Apache (`httpd`) must be actively running and enabled via `systemctl` to serve traffic.
+* **Client-Side Security Behavior:** Modern browsers (like Brave) enforce HTTPS by default. When serving HTTP traffic on Port 80 without SSL/TLS (Port 443), client-side HTTPS upgrades can cause artificial connection timeouts.
+* **Automated Web Server Deployment:** User Data scripts or custom AMIs are essential in production Auto Scaling Groups to ensure newly launched instances configure their web server environment automatically without manual SSH intervention.
+
