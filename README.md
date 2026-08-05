@@ -23,15 +23,16 @@ This repository contains all my hands-on AWS projects and notes.
 
 - [x] GitHub Setup
 - [x] AWS Account Setup
-- [x] IAM (Project 03)
 - [x] EC2 (Project 01)
-- [ ] Linux Basics
 - [x] S3 (Project 02)
+- [x] IAM (Project 03)
 - [x] VPC (Project 04)
 - [x] CloudWatch (Project 05)
+- [x] Auto Scaling (Project 06)
+- [ ] Linux Basics
 - [ ] RDS
 - [ ] Load Balancer
-- [ ] Auto Scaling
+  
 
 ## 🎯 Goal
 
