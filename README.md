@@ -29,9 +29,10 @@ This repository contains all my hands-on AWS projects and notes.
 - [x] VPC (Project 04)
 - [x] CloudWatch (Project 05)
 - [x] Auto Scaling (Project 06)
+- [x] Application Load Balancer ( Project 07 )
 - [ ] Linux Basics
 - [ ] RDS
-- [ ] Load Balancer
+
   
 
 ## 🎯 Goal
