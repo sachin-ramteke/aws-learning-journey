@@ -1,0 +1,40 @@
+# Project 07: AWS Application Load Balancer (ALB) & High Availability Setup
+
+## 📌 Architecture Overview
+This project demonstrates a multi-AZ, fault-tolerant, and auto-scaling web application deployment on AWS using custom VPC networking and an Application Load Balancer (ALB).
+
+## 🏗️ Architecture Components
+- **Custom VPC:** 2 Public Subnets across multiple Availability Zones (`ap-south-1a`, `ap-south-1b`).
+- **Internet Gateway & Route Tables:** Configured for public internet routing.
+- **Security Groups:** 
+  - `ALB-SG`: Restricts inbound traffic on Port 80 to public internet (`0.0.0.0/0`).
+  - `EC2-SG`: Restricts inbound HTTP traffic strictly to traffic coming from ALB.
+- **Target Group (`TG-Project07`):** Health check enabled for HTTP traffic.
+- **Application Load Balancer (`ALB-Project07`):** Multi-AZ internet-facing load balancer routing traffic to healthy EC2 instances.
+- **Auto Scaling Group (`web-server-asg`):** Maintains high availability and automatically launches/terminates instances based on workload demand.
+
+## 🚀 Live Demo Output
+- **Endpoint:** `http://ALB-Project07-926122024.ap-south-1.elb.amazonaws.com`
+- **Output:** `Welcome to Auto Scaled Web Server`
+
+---
+
+## ⚠️ Real-World Challenges Faced & Solutions
+
+### Issue: `ERR_CONNECTION_TIMED_OUT` on ALB DNS URL
+- **Problem:** When accessing the ALB DNS URL in the browser, the page timed out and threw a connection error.
+- **Root Cause Analysis:**
+  1. **Route Table Mismatch:** The newly selected subnet (`ap-south-1b`) was associated with a private/main route table without an Internet Gateway (`igw`) route (`0.0.0.0/0`).
+  2. **Security Group Rules:** Inbound HTTP traffic needed explicit allowance on both the ALB Security Group (`ALB-SG`) and the EC2 Instance Security Group.
+- **Solution Executed:**
+  1. Updated the Route Table Association for `ap-south-1b` subnet to point to `custom-vpc-project04-rtb-public` (which contains `0.0.0.0/0 -> igw`).
+  2. Verified and allowed HTTP (Port 80) from `0.0.0.0/0` in `ALB-SG` inbound rules.
+  3. Registered the EC2 instance into `TG-Project07` and verified health status transitioned from `Initial` to `Healthy`.
+
+---
+
+## 🔑 Key Takeaways & Learnings
+- **Multi-AZ Public Routing:** For an Internet-facing Load Balancer to work properly, **ALL** associated subnets across Availability Zones must have valid Internet Gateway routes in their Route Tables.
+- **Target Group Health Checks:** Load Balancers only forward traffic to instances that pass the configured health checks (`200 OK` on HTTP).
+- **Security In-Depth:** Restricting direct EC2 access and forcing incoming traffic to route strictly through the Application Load Balancer.
+- **Cost Awareness & Clean-up:** Always terminate Auto Scaling Groups, Load Balancers, Target Groups, and Custom VPCs immediately after testing to prevent unexpected AWS charges.
